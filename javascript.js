@@ -42,6 +42,11 @@ let y = "";
 let currentOperator;
 let newOperator;
 
+function ACListener() {
+    const display = document.querySelector('#display');
+    display.textContent = "";    
+}
+
 function setOperators(operator) {
     if (currentOperator === undefined) {
         currentOperator = operator;
@@ -85,6 +90,8 @@ function operatorListener() {
 function numberListener() {
     let num = this.id.charAt(6);
     y = y.concat(num);
+    const display = document.querySelector('#display');
+    display.textContent = `${y}`;  
     console.log(y);
 }
 
@@ -97,3 +104,6 @@ const operatorButtons = document.querySelectorAll('.operatorButton');
 operatorButtons.forEach((button) => {
     button.addEventListener('click', operatorListener);
 });
+
+const ACButton = document.querySelector('#AC');
+ACButton.addEventListener('click', ACListener);
