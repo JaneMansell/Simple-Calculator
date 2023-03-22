@@ -37,6 +37,8 @@ console.log(operate('-',3,2));
 console.log(operate('*',3,2));
 console.log(operate('/',3,2));
 
+let x = "";
+let y = "";
 let currentOperator;
 let newOperator;
 
@@ -56,6 +58,8 @@ function setOperators(operator) {
 
 function operatorListener() {
     console.log(this.id);
+    x = y;
+    y= "";
     switch (this.id) {
         case 'addButton' :
             setOperators('+');            
@@ -78,12 +82,16 @@ function operatorListener() {
     console.log(newOperator);   
 }
 
+function numberListener() {
+    let num = this.id.charAt(6);
+    y = y.concat(num);
+    console.log(y);
+}
 
-
-/*const numberButtons = document.querySelectorAll('.numberButton');
+const numberButtons = document.querySelectorAll('.numberButton');
 numberButtons.forEach((button) => {
     button.addEventListener('click', numberListener);
-});*/
+});
 
 const operatorButtons = document.querySelectorAll('.operatorButton');
 operatorButtons.forEach((button) => {
