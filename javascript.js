@@ -44,7 +44,11 @@ let newOperator;
 
 function ACListener() {
     const display = document.querySelector('#display');
-    display.textContent = "";    
+    display.textContent = "";
+    x = "";
+    y = "";
+    currentOperator = undefined;
+    newOperator = undefined;    
 }
 
 function setOperators(operator) {
