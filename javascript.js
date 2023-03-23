@@ -44,7 +44,7 @@ let newOperator;
 
 function ACListener() {
     const display = document.querySelector('#display');
-    display.textContent = "";
+    display.textContent = "hello";
     x = "";
     y = "";
     currentOperator = undefined;
