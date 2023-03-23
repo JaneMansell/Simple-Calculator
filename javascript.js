@@ -74,8 +74,12 @@ function operatorListener() {
     numberButtons.forEach((button) => {
         button.addEventListener('click', numberListener);
     });
-
-    
+    /* Stop two in a row operators unless = button */
+    if (this.id !== "equalsButton") {
+        operatorButtons.forEach((button) => {
+            button.removeEventListener('click', operatorListener);
+        });
+    }
 
     switch (this.id) {
         case 'addButton' :
@@ -148,7 +152,10 @@ function numberListener() {
             button.removeEventListener('click', numberListener);
         });
     }
-    
+    /* Ensure operator listener on */
+    operatorButtons.forEach((button) => {
+        button.addEventListener('click', operatorListener);
+    });
 }
 
 const numberButtons = document.querySelectorAll('.numberButton');
