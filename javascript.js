@@ -68,7 +68,15 @@ function setOperators(operator) {
 
 function operatorListener() {
     console.log(this.id);
+
+    /* Turn number listener back on as it may have been
+    removed if input was too long */
+    numberButtons.forEach((button) => {
+        button.addEventListener('click', numberListener);
+    });
+
     
+
     switch (this.id) {
         case 'addButton' :
             setOperators('+');            
@@ -124,7 +132,8 @@ function operatorListener() {
         }
     }
     console.log(currentOperator); 
-    console.log(newOperator);   
+    console.log(newOperator);
+
 }
 
 function numberListener() {
@@ -133,6 +142,13 @@ function numberListener() {
     const display = document.querySelector('#display');
     display.textContent = `${y}`;  
     console.log(y);
+    /* Stop too long input */
+    if (y.length > 10) {
+        numberButtons.forEach((button) => {
+            button.removeEventListener('click', numberListener);
+        });
+    }
+    
 }
 
 const numberButtons = document.querySelectorAll('.numberButton');
