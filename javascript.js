@@ -52,7 +52,7 @@ function ACListener() {
     numberButtons.forEach((button) => {
         button.addEventListener('click', numberListener);
     });
-        
+
 }
 
 function setOperators(operator) {
@@ -118,11 +118,11 @@ function operatorListener() {
         let result = operate(currentOperator,x,y);
         console.log(`result is ${result}`);
         const display = document.querySelector('#display');
-        if (result.toString().length > 13) {
+        if (result.toString().length > 12) {
             result = result.toFixed(4);
             
         }
-        if (result.toString().length > 13) {
+        if (result.toString().length > 12) {
             display.textContent = `ERROR`;
             x = "";
             y = "";
@@ -157,7 +157,7 @@ function numberListener() {
     display.textContent = `${y}`;  
     console.log(y);
     /* Stop too long input */
-    if (y.length > 10) {
+    if (y.length > 9) {
         numberButtons.forEach((button) => {
             button.removeEventListener('click', numberListener);
         });
