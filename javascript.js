@@ -48,7 +48,11 @@ function ACListener() {
     x = "";
     y = "";
     currentOperator = undefined;
-    newOperator = undefined;    
+    newOperator = undefined;
+    numberButtons.forEach((button) => {
+        button.addEventListener('click', numberListener);
+    });
+        
 }
 
 function setOperators(operator) {
@@ -70,14 +74,20 @@ function operatorListener() {
     console.log(this.id);
 
     /* Turn number listener back on as it may have been
-    removed if input was too long */
+    removed if input was too long or equals button was pressed*/
     numberButtons.forEach((button) => {
         button.addEventListener('click', numberListener);
     });
-    /* Stop two in a row operators unless = button */
+    /* Stop two in a row operators unless = button 
+        in which case stop number input*/
     if (this.id !== "equalsButton") {
         operatorButtons.forEach((button) => {
             button.removeEventListener('click', operatorListener);
+        });
+    }
+    else {
+        numberButtons.forEach((button) => {
+            button.removeEventListener('click', numberListener);
         });
     }
 
