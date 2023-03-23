@@ -84,7 +84,11 @@ function operatorListener() {
         operatorButtons.forEach((button) => {
             button.removeEventListener('click', operatorListener);
         });
+        /*Allow negative button for negative numbers*/
+        const subtractButton = document.querySelector('#subtractButton');
+        subtractButton.addEventListener('click', operatorListener);
     }
+    
     else {
         numberButtons.forEach((button) => {
             button.removeEventListener('click', numberListener);
@@ -96,7 +100,15 @@ function operatorListener() {
             setOperators('+');            
             break;
         case 'subtractButton' :
-            setOperators('-');
+            if (y === ""){
+                y = y.concat('-');
+                const display = document.querySelector('#display');
+                display.textContent = `${y}`;  
+                console.log(y+56);   
+            }
+            else {
+                setOperators('-');
+            }
             break;
         case 'multButton' :
             setOperators('*');
@@ -110,7 +122,11 @@ function operatorListener() {
 
     }
 
-    if (x===""){
+    if (y === '-') {
+        console.log(y);
+    }
+
+    else if (x===""){
         x = y;
         y= "";
     }
@@ -152,6 +168,7 @@ function operatorListener() {
 
 function numberListener() {
     let num = this.id.charAt(6);
+    console.log(y)
     y = y.concat(num);
     const display = document.querySelector('#display');
     display.textContent = `${y}`;  
