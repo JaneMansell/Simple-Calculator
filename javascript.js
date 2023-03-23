@@ -1,5 +1,5 @@
 function add(a,b) {
-    return a + b;
+    return parseFloat(a) + parseFloat(b);
 }
 
 function subtract(a,b) {
@@ -59,6 +59,7 @@ function setOperators(operator) {
         newOperator = operator;
     }
     else {
+        
         currentOperator = newOperator;
         newOperator = operator;
     }
@@ -67,8 +68,7 @@ function setOperators(operator) {
 
 function operatorListener() {
     console.log(this.id);
-    x = y;
-    y= "";
+    
     switch (this.id) {
         case 'addButton' :
             setOperators('+');            
@@ -86,6 +86,42 @@ function operatorListener() {
             setOperators('=');
             break;   
 
+    }
+
+    if (x===""){
+        x = y;
+        y= "";
+    }
+    else {
+        let result = operate(currentOperator,x,y);
+        console.log(`result is ${result}`);
+        const display = document.querySelector('#display');
+        if (result.toString().length > 13) {
+            result = result.toFixed(4);
+            
+        }
+        if (result.toString().length > 13) {
+            display.textContent = `ERROR`;
+            x = "";
+            y = "";
+            currentOperator = undefined;
+            newOperator = undefined; 
+        }
+        else {
+            console.log(`new result is ${result}`);
+            display.textContent = `${result}`;
+            if (newOperator !== '=') { 
+                x = result;
+                y= "";
+            }
+            else {
+                x="";
+                y=result;
+                currentOperator = undefined;
+                newOperator = undefined;
+
+            }
+        }
     }
     console.log(currentOperator); 
     console.log(newOperator);   
