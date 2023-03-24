@@ -17,7 +17,8 @@ function divide(a,b) {
         x = "";
         y = "";
         currentOperator = undefined;
-        newOperator = undefined; 
+        newOperator = undefined;
+        return 'ERROR'; 
     }
     else {
         return a / b;
@@ -82,7 +83,7 @@ function setOperators(operator) {
 
 function operatorListener() {
     console.log(this.id);
-
+    let invalidOp;
     /* Turn number listener back on as it may have been
     removed if input was too long or equals button was pressed*/
     numberButtons.forEach((button) => {
@@ -127,9 +128,19 @@ function operatorListener() {
             setOperators('/');
             break;
         case 'equalsButton' :
-            setOperators('=');
+            if (x !== "") {
+                setOperators('=');
+                invalidOp = false; 
+            }
+            else {
+                invalidOp = true; 
+            }
             break;   
 
+    }
+
+    if (invalidOp === true) {
+        return;
     }
 
     if (y === '-') {
